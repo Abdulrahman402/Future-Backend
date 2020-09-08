@@ -47,10 +47,6 @@ const courseSchema = new Schema({
   modules: {
     type: [Schema.Types.ObjectId],
     ref: "Module"
-  },
-  quiz: {
-    type: [Schema.Types.ObjectId],
-    ref: "Quiz"
   }
 });
 
@@ -60,7 +56,8 @@ function validateCourse(course) {
   const schema = {
     title: joi.string().required(),
     description: joi.string().required(),
-    goals: joi.string().required()
+    goals: joi.string().required(),
+    background: joi.string().required()
   };
   return joi.validate(course, schema);
 }

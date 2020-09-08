@@ -1,6 +1,6 @@
 const { User, assignManager } = require("../../Models/User");
 
-exports.assignManager = async function(req, res, next) {
+exports.assignLearner = async function(req, res, next) {
   const { error } = assignManager(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -9,7 +9,7 @@ exports.assignManager = async function(req, res, next) {
 
   await User.findOneAndUpdate(
     { email: req.query.email },
-    { $set: { company: req.body.company, isManager: true } },
+    { $set: { company: req.body.company, isLearner: true } },
     { new: true }
   );
   res.send("Role added");

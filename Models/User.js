@@ -27,8 +27,19 @@ const userSchema = new Schema({
     type: Boolean,
     default: false
   },
+  isManager: {
+    type: Boolean,
+    default: false
+  },
+  isTrainingManager: {
+    type: Boolean,
+    default: false
+  },
+  isLearner: {
+    type: Boolean,
+    default: false
+  },
   company: String,
-  role: String,
   points: Number,
   picture: String,
   courses: {
@@ -83,8 +94,7 @@ function updateUserPassword(user) {
 
 function assignManager(manager) {
   const schema = {
-    company: joi.string().required(),
-    role: joi.string().required()
+    company: joi.string().required()
   };
   return joi.validate(manager, schema);
 }

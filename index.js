@@ -10,6 +10,8 @@ const keys = require("./Config/keys");
 const user = require("./Routes/user");
 const auth = require("./Routes/auth");
 const course = require("./Routes/course");
+const modules = require("./Routes/module");
+const content = require("./Controllers/Module/addContent");
 
 app.get("/", async (req, res) => {
   res.send("Hello");
@@ -32,5 +34,7 @@ app.use(cors());
 app.use("/api/user", user);
 app.use("/api/auth", auth);
 app.use("/api/course", course);
+app.use("/api/module", modules);
+app.use("/api/content", content);
 
 module.exports = server;

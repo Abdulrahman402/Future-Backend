@@ -13,10 +13,10 @@ const moduleSchema = new Schema({
     required: true
   },
   content: {
-    type: String,
-    required: true
+    type: []
   },
-  Course: {
+  textContent: String,
+  course: {
     type: Schema.Types.ObjectId,
     ref: "Course"
   },
@@ -31,8 +31,14 @@ const Module = mongoose.model("Module", moduleSchema);
 function validateModule(module) {
   const schema = {
     title: joi.string().required(),
-    description: joi.string().required(),
-    content: joi.string().required()
+    description: joi.string().required()
+  };
+  return joi.validate(module, schema);
+}
+
+function validateTextContent(module) {
+  const schema = {
+    textContent: joi.string().required()
   };
   return joi.validate(module, schema);
 }
@@ -63,5 +69,6 @@ module.exports = {
   validateModule,
   updateModuleTitle,
   updateModuleDescription,
-  updateModuleContent
+  updateModuleContent,
+  validateTextContent
 };

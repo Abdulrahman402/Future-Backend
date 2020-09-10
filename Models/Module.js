@@ -20,10 +20,12 @@ const moduleSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Course"
   },
-  quiz: {
-    type: [Schema.Types.ObjectId],
-    ref: "Quiz"
-  }
+  quiz: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Quiz"
+    }
+  ]
 });
 
 const Module = mongoose.model("Module", moduleSchema);

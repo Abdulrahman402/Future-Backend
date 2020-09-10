@@ -42,19 +42,29 @@ const userSchema = new Schema({
   company: String,
   points: Number,
   picture: String,
-  courses: {
-    type: [Schema.Types.ObjectId],
-    ref: "Course"
-  },
-  training: {
-    type: [Schema.Types.ObjectId],
-    ref: "Training"
-  }
+  courses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Course"
+    }
+  ],
+  training: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Training"
+    }
+  ]
 });
 
 userSchema.methods.generateAuthToken = async function() {
   const token = jwt.sign(
-    { _id: this._id, isAdmin: this.isAdmin, role: this.role },
+    {
+      _id: this._id,
+      isAdmin: this.isAdmin,
+      isManager: this.isManager,
+      isTrainingManager: this.isTrainingManager,
+      isLearner: this.isLearner
+    },
     keys.tokenSecretKey
   );
 

@@ -24,16 +24,22 @@ const trainingSchema = new Schema({
     type: String,
     required: true
   },
-  courses: {
-    type: [Schema.Types.ObjectId],
-    ref: "Course"
-  },
+  courses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Course"
+    }
+  ],
   learner: {
     type: Schema.Types.ObjectId,
     ref: "User"
   },
-  managers: {
-    type: [Schema.Types.ObjectId],
+  manager: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  trainingManager: {
+    type: Schema.Types.ObjectId,
     ref: "User"
   }
 });

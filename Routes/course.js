@@ -13,6 +13,7 @@ const updateGoals = require("../Controllers/Course/updateGoals");
 const allCourses = require("../Controllers/Course/allCourses");
 const sellCourse = require("../Controllers/Course/sellCourse");
 const displayCourse = require("../Controllers/Course/displayCourse");
+const myCourses = require("../Controllers/Course/myCourses");
 
 router.post("/addCourse", auth, isAdmin, addCourse.addCourse);
 
@@ -34,5 +35,7 @@ router.put("/sellCourse/:id", auth, isAdmin, sellCourse.sellCourse);
 router.get("/allCourses", auth, allCourses.allCourses);
 
 router.get("/displayCourse/:id", auth, displayCourse.displayCourse);
+
+router.get("/myCourses", auth, myCourses.myCourses);
 
 module.exports = router;

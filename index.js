@@ -12,6 +12,7 @@ const auth = require("./Routes/auth");
 const course = require("./Routes/course");
 const modules = require("./Routes/module");
 const content = require("./Controllers/Module/addContent");
+const training = require("./Routes/training");
 
 app.get("/", async (req, res) => {
   res.send("Hello");
@@ -36,5 +37,6 @@ app.use("/api/auth", auth);
 app.use("/api/course", course);
 app.use("/api/module", modules);
 app.use("/api/content", content);
+app.use("/api/training", training);
 
 module.exports = server;

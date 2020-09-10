@@ -44,10 +44,12 @@ const courseSchema = new Schema({
       }
     }
   ],
-  modules: {
-    type: [Schema.Types.ObjectId],
-    ref: "Module"
-  }
+  modules: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Module"
+    }
+  ]
 });
 
 const Course = mongoose.model("Course", courseSchema);

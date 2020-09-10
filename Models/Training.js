@@ -24,7 +24,13 @@ const trainingSchema = new Schema({
     type: String,
     required: true
   },
-  courses: [
+  mandatoryCourses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Course"
+    }
+  ],
+  optionalCourses: [
     {
       type: Schema.Types.ObjectId,
       ref: "Course"

@@ -4,9 +4,11 @@ const router = express.Router();
 
 const auth = require("../Middleware/auth");
 const isManager = require("../Middleware/isManager");
+const isTrainingManager = require("../Middleware/isTrainingManager");
 
 const addTraining = require("../Controllers/Training/addTraining");
-const addCourse = require("../Controllers/Training/addCourse");
+const addMandatoryCourse = require("../Controllers/Training/addMandatoryCourse");
+const addOptionalCourse = require("../Controllers/Training/addOptionalCourse");
 const displayTraining = require("../Controllers/Training/displayTraining");
 const assignLearner = require("../Controllers/Training/assignLearner");
 const assignTrainingManager = require("../Controllers/Training/assignTrainingManager");
@@ -18,7 +20,19 @@ const updateDate = require("../Controllers/Training/updateDate");
 
 router.post("/addTraining", auth, isManager, addTraining.addTraining);
 
-router.put("/addCourse/:id", auth, isManager, addCourse.addCourse);
+router.put(
+  "/addMandatoryCourse/:trainingId/:courseId",
+  auth,
+  isManager,
+  addMandatoryCourse.addMandatoryCourse
+);
+
+router.put(
+  "/addOptionalCourse/:trainingId/:courseId",
+  auth,
+  isManager,
+  addOptionalCourse.addOptionalCourse
+);
 
 router.put(
   "/removeCourse/:trainingId/:courseId",

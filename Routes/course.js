@@ -33,7 +33,7 @@ router.put("/updateGoals", auth, isAdmin, updateGoals.updateGoals);
 
 router.put("/sellCourse/:id", auth, isAdmin, sellCourse.sellCourse);
 
-router.put("/updateTarget/:id", auth.isAdmin, updateTarget.updateTrget);
+router.put("/updateTarget/:id", auth, isAdmin, updateTarget.updateTrget);
 
 router.get("/allCourses", auth, allCourses.allCourses);
 

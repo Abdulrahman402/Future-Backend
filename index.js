@@ -14,6 +14,7 @@ const modules = require("./Routes/module");
 const content = require("./Controllers/Module/addContent");
 const training = require("./Routes/training");
 const quiz = require("./Routes/quiz");
+const answer = require("./Routes/answer");
 
 app.get("/", async (req, res) => {
   res.send("Hello");
@@ -40,5 +41,6 @@ app.use("/api/module", modules);
 app.use("/api/content", content);
 app.use("/api/training", training);
 app.use("/api/quiz", quiz);
+app.use("/api/answer", answer);
 
 module.exports = server;

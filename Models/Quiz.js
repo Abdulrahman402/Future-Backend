@@ -16,10 +16,12 @@ const quizSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "Module"
   },
-  answer: {
-    type: Schema.Types.ObjectId,
-    ref: "Answer"
-  }
+  answer: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Answer"
+    }
+  ]
 });
 
 const Quiz = mongoose.model("Quiz", quizSchema);

@@ -13,6 +13,7 @@ const course = require("./Routes/course");
 const modules = require("./Routes/module");
 const content = require("./Controllers/Module/addContent");
 const training = require("./Routes/training");
+const quiz = require("./Routes/quiz");
 
 app.get("/", async (req, res) => {
   res.send("Hello");
@@ -38,5 +39,6 @@ app.use("/api/course", course);
 app.use("/api/module", modules);
 app.use("/api/content", content);
 app.use("/api/training", training);
+app.use("/api/quiz", quiz);
 
 module.exports = server;

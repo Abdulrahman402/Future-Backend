@@ -17,24 +17,24 @@ const certificateSchema = new Schema({
     required: true
   },
   duration: {
-    type: Date,
+    type: String,
     required: true
   }
 });
 
 const Certificate = mongoose.model("Cretificate", certificateSchema);
 
-function validateCretificate(certificate) {
+function validateCertificate(certificate) {
   const schema = {
     firstName: joi.string().required(),
     lastName: joi.string().required(),
     track: joi.string().required(),
-    duration: joi.date().required()
+    duration: joi.string().required()
   };
   return joi.validate(certificate, schema);
 }
 
-function updateCretificateName(certificate) {
+function updateCertificateName(certificate) {
   const schema = {
     firstName: joi.string().required(),
     lastName: joi.string().required()
@@ -42,24 +42,24 @@ function updateCretificateName(certificate) {
   return joi.validate(certificate, schema);
 }
 
-function updateCretificateTrack(certificate) {
+function updateCertificateTrack(certificate) {
   const schema = {
     track: joi.string().required()
   };
   return joi.validate(certificate, schema);
 }
 
-function updateCretificateDuration(certificate) {
+function updateCertificateDuration(certificate) {
   const schema = {
-    duration: joi.date().required()
+    duration: joi.string().required()
   };
   return joi.validate(certificate, schema);
 }
 
 module.exports = {
   Certificate,
-  validateCretificate,
-  updateCretificateName,
-  updateCretificateTrack,
-  updateCretificateDuration
+  validateCertificate,
+  updateCertificateName,
+  updateCertificateTrack,
+  updateCertificateDuration
 };

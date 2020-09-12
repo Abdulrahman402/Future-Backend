@@ -20,6 +20,10 @@ const courseSchema = new Schema({
     type: String,
     required: true
   },
+  target: {
+    type: String,
+    required: true
+  },
   comments: [
     {
       user: {
@@ -85,10 +89,18 @@ function updateCourseGoals(course) {
   return joi.validate(course, schema);
 }
 
+function updateCourseTarget(course) {
+  const schema = {
+    target: joi.string().required()
+  };
+  return joi.validate(course, schema);
+}
+
 module.exports = {
   Course,
   validateCourse,
   updateCourseTitle,
   updateCourseDescription,
-  updateCourseGoals
+  updateCourseGoals,
+  updateCourseTarget
 };

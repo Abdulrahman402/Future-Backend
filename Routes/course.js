@@ -14,6 +14,7 @@ const allCourses = require("../Controllers/Course/allCourses");
 const sellCourse = require("../Controllers/Course/sellCourse");
 const displayCourse = require("../Controllers/Course/displayCourse");
 const myCourses = require("../Controllers/Course/myCourses");
+const updateTarget = require("../Controllers/Course/updateTarget");
 
 router.post("/addCourse", auth, isAdmin, addCourse.addCourse);
 
@@ -31,6 +32,8 @@ router.put(
 router.put("/updateGoals", auth, isAdmin, updateGoals.updateGoals);
 
 router.put("/sellCourse/:id", auth, isAdmin, sellCourse.sellCourse);
+
+router.put("/updateTarget/:id", auth.isAdmin, updateTarget.updateTrget);
 
 router.get("/allCourses", auth, allCourses.allCourses);
 

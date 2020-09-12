@@ -7,7 +7,7 @@ exports.addCourse = async function(req, res, next) {
   if (error) return res.status(400).send(error.details[0].message);
 
   let course = new Course(
-    _.pick(req.body, ["title", "description", "goals", "background"])
+    _.pick(req.body, ["title", "description", "goals", "background", "target"])
   );
   await course.save();
 

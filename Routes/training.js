@@ -17,6 +17,7 @@ const updateTitle = require("../Controllers/Training/updateTitle");
 const updateDescription = require("../Controllers/Training/updateDescription");
 const updateSpeciality = require("../Controllers/Training/updateSpeciality");
 const updateDate = require("../Controllers/Training/updateDate");
+const removeTraining = require("../Controllers/Training/removeTraining");
 
 router.post(
   "/addTraining",
@@ -89,5 +90,12 @@ router.put(
 );
 
 router.get("/displayTraining", auth, displayTraining.displayTraining);
+
+router.delete(
+  "/removeTraining/:trainingId",
+  auth,
+  (isManager, isTrainingManager),
+  removeTraining.removeTraining
+);
 
 module.exports = router;

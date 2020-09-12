@@ -18,6 +18,7 @@ const allManagers = require("../Controllers/User/allManagers");
 const allTrainingManagers = require("../Controllers/User/allTrainingManagers");
 const findUser = require("../Controllers/User/findUser");
 const userProfile = require("../Controllers/User/userProfile");
+const removeUser = require("../Controllers/User/removeUser");
 
 router.post("/signUp", auth, isAdmin, signUp.signUp);
 
@@ -54,5 +55,7 @@ router.put(
 );
 
 router.put("/assignLearner", auth, isAdmin, assignLearner.assignLearner);
+
+router.delete("/removeUser/:userId", auth, isAdmin, removeUser.removeUser);
 
 module.exports = router;

@@ -35,6 +35,8 @@ const server = app.listen(port, () => {
 
 app.use(express.json());
 app.use(cors());
+app.use("/Image", express.static("Image"));
+app.use("/File", express.static("File"));
 app.use("/api/user", user);
 app.use("/api/auth", auth);
 app.use("/api/course", course);

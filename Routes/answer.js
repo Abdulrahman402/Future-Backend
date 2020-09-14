@@ -25,7 +25,7 @@ router.put(
 router.put(
   "/addComment/:answerId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   addComment.addComment
 );
 
@@ -36,6 +36,6 @@ router.put(
   updateAnswer.updateAnswer
 );
 
-router.put("mark/:answerId", auth, (isManager, isTrainingManager), mark.mark);
+router.put("/mark/:answerId", auth, isManager || isTrainingManager, mark.mark);
 
 module.exports = router;

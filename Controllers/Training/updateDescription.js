@@ -8,7 +8,7 @@ exports.updateDescription = async function(req, res, next) {
   if (error) return res.status(400).send(error.details[0].message);
 
   const training = await Training.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.trainingId },
     { $set: { description: req.body.description } },
     { new: true }
   );

@@ -36,13 +36,13 @@ const uploadPic = multer(
 );
 
 router.post(
-  "/addPic/:id",
+  "/addPic/:moduleId",
   auth,
   isAdmin,
   uploadPic.single("upload"),
   async (req, res) => {
     const module = await Module.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.params.moduleId },
       { $push: { content: req.file.path } },
       { new: true }
     );
@@ -79,13 +79,13 @@ const uploadFile = multer(
 );
 
 router.post(
-  "/addFile/:id",
+  "/addFile/:moduleId",
   auth,
   isAdmin,
   uploadFile.single("upload"),
   async (req, res) => {
     const module = await Module.findOneAndUpdate(
-      { _id: req.params.id },
+      { _id: req.params.moduleId },
       { $push: { content: req.file.path } },
       { new: true }
     );
@@ -94,13 +94,13 @@ router.post(
   }
 );
 
-router.post("/addText/:id", auth, isAdmin, async (req, res) => {
+router.post("/addText/:moduleId", auth, isAdmin, async (req, res) => {
   const { error } = validateTextContent(req.body);
   if (error) return res.status(400).send(error.details[0].message);
 
   const module = await Module.findOneAndUpdate(
-    { _id: req.params.id },
-    { $set: { textContent: req.body.text } },
+    { _id: req.params.moduleId },
+    { $set: { textContent: req.body.textContent } },
     { new: true }
   );
 

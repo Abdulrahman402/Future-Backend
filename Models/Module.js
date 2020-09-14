@@ -45,6 +45,13 @@ function validateTextContent(module) {
   return joi.validate(module, schema);
 }
 
+function updateTextContent(module) {
+  const schema = {
+    textContent: joi.string().required()
+  };
+  return joi.validate(module, schema);
+}
+
 function updateModuleTitle(module) {
   const schema = {
     title: joi.string().required()
@@ -72,5 +79,6 @@ module.exports = {
   updateModuleTitle,
   updateModuleDescription,
   updateModuleContent,
-  validateTextContent
+  validateTextContent,
+  updateTextContent
 };

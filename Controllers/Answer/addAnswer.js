@@ -15,7 +15,7 @@ exports.addAnswer = async function(req, res, next) {
 
   await Quiz.findOneAndUpdate(
     { _id: req.params.quizId },
-    { $set: { answer: answer._id } },
+    { $push: { answer: answer._id } },
     { new: true }
   );
 

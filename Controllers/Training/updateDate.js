@@ -17,7 +17,7 @@ exports.updateDate = async function(req, res, next) {
     return res.send("Date is invalid");
 
   const training = await Training.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.trainingId },
     { $set: { startDate: start, endDate: end } },
     { new: true }
   );

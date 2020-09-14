@@ -3,9 +3,9 @@ const { Course } = require("../../Models/Course");
 exports.allCourses = async function(req, res, next) {
   const page = req.query.page;
   const perPage = 20;
-  const query = req.query.search;
+  const query = req.query.title;
 
-  if (!page && !query) {
+  if (!query) {
     const allCourses = await Course.find();
     res.send(allCourses);
   }
@@ -18,6 +18,7 @@ exports.allCourses = async function(req, res, next) {
   const course = await Course.find({
     title: { $regex: query, $options: "i" }
   })
+    .select()
 
     // pagination
     .limit(perPage)

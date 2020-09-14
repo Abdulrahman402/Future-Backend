@@ -18,26 +18,31 @@ const updateTarget = require("../Controllers/Course/updateTarget");
 
 router.post("/addCourse", auth, isAdmin, addCourse.addCourse);
 
-router.post("/removeCourse/:id", auth, isAdmin, removeCourse.removeCourse);
+router.delete(
+  "/removeCourse/:courseId",
+  auth,
+  isAdmin,
+  removeCourse.removeCourse
+);
 
-router.put("/updateTitle", auth, isAdmin, updateTitle.updateTitle);
+router.put("/updateTitle/:courseId", auth, isAdmin, updateTitle.updateTitle);
 
 router.put(
-  "/updateDescription",
+  "/updateDescription/:courseId",
   auth,
   isAdmin,
   updateDescription.updateDescription
 );
 
-router.put("/updateGoals", auth, isAdmin, updateGoals.updateGoals);
+router.put("/updateGoals/:courseId", auth, isAdmin, updateGoals.updateGoals);
 
-router.put("/sellCourse/:id", auth, isAdmin, sellCourse.sellCourse);
+router.put("/sellCourse/:courseId", auth, isAdmin, sellCourse.sellCourse);
 
-router.put("/updateTarget/:id", auth, isAdmin, updateTarget.updateTrget);
+router.put("/updateTarget/:courseId", auth, isAdmin, updateTarget.updateTrget);
 
 router.get("/allCourses", auth, allCourses.allCourses);
 
-router.get("/displayCourse/:id", auth, displayCourse.displayCourse);
+router.get("/displayCourse/:courseId", auth, displayCourse.displayCourse);
 
 router.get("/myCourses", auth, myCourses.myCourses);
 

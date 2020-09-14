@@ -14,7 +14,7 @@ exports.addModule = async function(req, res, next) {
   await module.save();
 
   await Course.findOneAndUpdate(
-    { _id: req.params.id },
+    { _id: req.params.courseId },
     { $push: { modules: module._id } },
     { new: true }
   );

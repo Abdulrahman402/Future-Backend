@@ -79,8 +79,8 @@ function validateUser(user) {
     lastName: joi.string().required(),
     email: joi
       .string()
-      .required()
-      .email(),
+      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+      .required(),
     password: joi.string().required()
   };
   return joi.validate(user, schema);
@@ -104,7 +104,21 @@ function updateUserPassword(user) {
 
 function assignManager(manager) {
   const schema = {
-    company: joi.string().required()
+    company: joi.string().required(),
+    email: joi
+      .string()
+      .email()
+      .required()
+  };
+  return joi.validate(manager, schema);
+}
+
+function assignLearner(manager) {
+  const schema = {
+    email: joi
+      .string()
+      .email()
+      .required()
   };
   return joi.validate(manager, schema);
 }
@@ -114,5 +128,6 @@ module.exports = {
   validateUser,
   updateUserName,
   updateUserPassword,
-  assignManager
+  assignManager,
+  assignLearner
 };

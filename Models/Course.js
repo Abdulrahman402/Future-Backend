@@ -28,7 +28,7 @@ const courseSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "User"
       },
       text: {
         type: String
@@ -39,7 +39,7 @@ const courseSchema = new Schema({
     {
       user: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "User"
       },
       rate: {
         type: Number,
@@ -63,7 +63,8 @@ function validateCourse(course) {
     title: joi.string().required(),
     description: joi.string().required(),
     goals: joi.string().required(),
-    background: joi.string().required()
+    background: joi.string().required(),
+    target: joi.string().required()
   };
   return joi.validate(course, schema);
 }

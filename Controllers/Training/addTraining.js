@@ -24,7 +24,7 @@ exports.addTraining = async function(req, res, next) {
     startDate: start,
     endDate: end,
     speciality: req.body.speciality,
-    managers: req.user._id
+    manager: req.user._id
   });
 
   await training.save();

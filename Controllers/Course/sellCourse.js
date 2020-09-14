@@ -6,7 +6,9 @@ exports.sellCourse = async function(req, res, next) {
   if (!manager) return res.status(400).send("User not found");
   if (!manager.isManager) return res.status(400).send("User not a Manager");
 
-  const course = await Course.findOne({ _id: req.params.id }).select("_id");
+  const course = await Course.findOne({ _id: req.params.courseId }).select(
+    "_id"
+  );
 
   await User.findOneAndUpdate(
     { email: req.body.email },

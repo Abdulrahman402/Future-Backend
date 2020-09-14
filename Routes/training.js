@@ -22,79 +22,83 @@ const removeTraining = require("../Controllers/Training/removeTraining");
 router.post(
   "/addTraining",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   addTraining.addTraining
 );
 
 router.put(
   "/addMandatoryCourse/:trainingId/:courseId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   addMandatoryCourse.addMandatoryCourse
 );
 
 router.put(
   "/addOptionalCourse/:trainingId/:courseId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   addOptionalCourse.addOptionalCourse
 );
 
 router.put(
   "/removeCourse/:trainingId/:courseId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   removeCourse.removeCourse
 );
 
 router.put(
   "/assignLearner/:trainingId/:userId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   assignLearner.assignLearner
 );
 
 router.put(
   "/assignTrainingManager/:trainingId/:userId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   assignTrainingManager.assignTrainingManager
 );
 
 router.put(
-  "/updateTitle/:id",
+  "/updateTitle/:trainingId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   updateTitle.updateTitle
 );
 
 router.put(
-  "/updateDescription/:id",
+  "/updateDescription/:trainingId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   updateDescription.updateDescription
 );
 
 router.put(
-  "/updateSpeciality/:id",
+  "/updateSpeciality/:trainingId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   updateSpeciality.updateSpeciality
 );
 
 router.put(
-  "/updateDate/:id",
+  "/updateDate/:trainingId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   updateDate.updateDate
 );
 
-router.get("/displayTraining", auth, displayTraining.displayTraining);
+router.get(
+  "/displayTraining/:trainingId",
+  auth,
+  displayTraining.displayTraining
+);
 
 router.delete(
   "/removeTraining/:trainingId",
   auth,
-  (isManager, isTrainingManager),
+  isManager || isTrainingManager,
   removeTraining.removeTraining
 );
 

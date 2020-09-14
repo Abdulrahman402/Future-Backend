@@ -9,7 +9,7 @@ const signUp = require("../Controllers/User/signUp");
 const myProfile = require("../Controllers/User/myProfile");
 const changeName = require("../Controllers/User/changeName");
 const changePassword = require("../Controllers/User/changePassword");
-const allUsers = require("../Controllers/User/allUsers");
+const allLearners = require("../Controllers/User/allLearners");
 const allAdmins = require("../Controllers/User/allAdmins");
 const assignManager = require("../Controllers/User/assignManager");
 const assignTrainingManager = require("../Controllers/User/assignTrainingManager");
@@ -22,9 +22,9 @@ const removeUser = require("../Controllers/User/removeUser");
 
 router.post("/signUp", auth, isAdmin, signUp.signUp);
 
-router.get("/allusers", auth, isAdmin, allUsers.allUsers);
+router.get("/allLearners", auth, isAdmin, allLearners.allLearners);
 
-router.get("/userProfile/:id", auth, isAdmin, userProfile.userProfile);
+router.get("/userProfile/:userId", auth, userProfile.userProfile);
 
 router.get("/allAdmins", auth, isAdmin, allAdmins.allAdmins);
 
@@ -39,7 +39,7 @@ router.get(
 
 router.get("/me", auth, myProfile.myProfile);
 
-router.get("/findUser", auth, isAdmin, findUser.findUser);
+router.get("/findUser", auth, findUser.findUser);
 
 router.put("/changeName", auth, changeName.changeName);
 

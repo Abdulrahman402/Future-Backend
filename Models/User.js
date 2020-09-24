@@ -23,21 +23,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  isAdmin: {
-    type: Boolean,
-    default: false
-  },
-  isManager: {
-    type: Boolean,
-    default: false
-  },
-  isTrainingManager: {
-    type: Boolean,
-    default: false
-  },
-  isLearner: {
-    type: Boolean,
-    default: false
+  role: {
+    type: String,
+    enum: ["Admin", "Learner", "Manager", "Training Manager"],
+    required: true
   },
   company: String,
   points: Number,
@@ -58,13 +47,7 @@ const userSchema = new Schema({
 
 userSchema.methods.generateAuthToken = async function() {
   const token = jwt.sign(
-    {
-      _id: this._id,
-      isAdmin: this.isAdmin,
-      isManager: this.isManager,
-      isTrainingManager: this.isTrainingManager,
-      isLearner: this.isLearner
-    },
+    { _id: this._id, role: this.role },
     keys.tokenSecretKey
   );
 
@@ -81,7 +64,8 @@ function validateUser(user) {
       .string()
       .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
       .required(),
-    password: joi.string().required()
+    password: joi.string().required(),
+    role: joi.string().required()
   };
   return joi.validate(user, schema);
 }
@@ -102,32 +86,9 @@ function updateUserPassword(user) {
   return joi.validate(user, schema);
 }
 
-function assignManager(manager) {
-  const schema = {
-    company: joi.string().required(),
-    email: joi
-      .string()
-      .email()
-      .required()
-  };
-  return joi.validate(manager, schema);
-}
-
-function assignLearner(manager) {
-  const schema = {
-    email: joi
-      .string()
-      .email()
-      .required()
-  };
-  return joi.validate(manager, schema);
-}
-
 module.exports = {
   User,
   validateUser,
   updateUserName,
-  updateUserPassword,
-  assignManager,
-  assignLearner
+  updateUserPassword
 };

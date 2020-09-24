@@ -11,9 +11,6 @@ const changeName = require("../Controllers/User/changeName");
 const changePassword = require("../Controllers/User/changePassword");
 const allLearners = require("../Controllers/User/allLearners");
 const allAdmins = require("../Controllers/User/allAdmins");
-const assignManager = require("../Controllers/User/assignManager");
-const assignTrainingManager = require("../Controllers/User/assignTrainingManager");
-const assignLearner = require("../Controllers/User/assignLearner");
 const allManagers = require("../Controllers/User/allManagers");
 const allTrainingManagers = require("../Controllers/User/allTrainingManagers");
 const findUser = require("../Controllers/User/findUser");
@@ -44,17 +41,6 @@ router.get("/findUser", auth, findUser.findUser);
 router.put("/changeName", auth, changeName.changeName);
 
 router.put("/changePassword", auth, changePassword.changePassword);
-
-router.put("/assignManager", auth, isAdmin, assignManager.assignManager);
-
-router.put(
-  "/assignTrainingManager",
-  auth,
-  isAdmin,
-  assignTrainingManager.assignTrainingManager
-);
-
-router.put("/assignLearner", auth, isAdmin, assignLearner.assignLearner);
 
 router.delete("/removeUser/:userId", auth, isAdmin, removeUser.removeUser);
 

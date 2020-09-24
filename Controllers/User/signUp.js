@@ -12,7 +12,7 @@ exports.signUp = async function(req, res, next) {
   if (user) return res.status(400).send("User already registered");
 
   user = new User(
-    _.pick(req.body, ["email", "firstName", "lastName", "password"])
+    _.pick(req.body, ["email", "firstName", "lastName", "password", "role"])
   );
 
   const salt = await bcrypt.genSalt(10);
@@ -41,5 +41,5 @@ exports.signUp = async function(req, res, next) {
 
   res
     .header("x-auth-token", token)
-    .send(_.pick(user, "email", "firstName", "lastName"));
+    .send(_.pick(user, "email", "firstName", "lastName", "role"));
 };
